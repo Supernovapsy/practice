@@ -1,0 +1,48 @@
+BFS(G, s):
+    frontier = [s]
+    next_frontier = []
+    level = 0
+    parent = {s: None}
+    while frontier:
+        for u in frontier:
+            for v in Adj(u):
+                if v not in parent:
+                    parent[v] = u
+                    next_frontier.append(v)
+        frontier = next_frontier
+        next_frontier = []
+        level += 1
+
+
+parent = {s: None}
+
+DFS-visit(G, u):
+    for v in Adj(u):
+        if v not in parent:
+            parent[v] = u
+            DFS-visit(v)
+
+DFS(G, s):
+    DFS-visit(G, s)
+
+
+O(V + E) for both algorithms because both visits each edge and vertex exactly
+once.
+
+relax(u, v, w, parent):
+    if v not in parent or w(u, v) + u.d < v.d:
+        v.d = w(u, v) + u.d
+        parent[v] = u
+
+Dijkstra(G, s, w):
+    Q = priority_queue # This could be an array or a heap.
+    s.d = 0
+    Q.add(s)
+    # If not in parent after algorithm finishes, then not reachable.
+    parent = {s: None}
+
+    while Q:
+        u = Q.extract_min() # O(V * logV)
+        for v in Adj[u]:
+            relax(u, v, w, parent) # O(E)
+            update_heap(Q, v) # O(E * logV)
