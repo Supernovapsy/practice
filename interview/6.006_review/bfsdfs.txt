@@ -1,0 +1,71 @@
+NOTE: be careful for both BFS and DFS, do not revisit nodes, or else may end up
+in a loop as we're talking about graphs, not trees.
+
+BFS(s, d, Adj)
+    level = 0
+    visited = {s}
+    frontier = [s]
+    while frontier:
+        next = []
+        for node in frontier:
+            if (node == d):
+                return d
+            for neighbour in Adj[node]:
+                if neighbour not in visited:
+                    next.append(neighbour)
+                    visited.add(neighbour)
+        level += 1
+        frontier = next
+
+BFS(s, Adj):
+    level = {s: 0}
+    parent = {s: None}
+    frontier = [s]
+    i = 1
+    while frontier:
+        next = []
+        for node in frontier:
+            for neighbour in Adj[node]:
+                if neighbour not in parent:
+                    next.append(neighbour)
+                    parent[neighbour] = node
+                    level[neighbour] = i
+        i += 1
+        frontier = next
+
+correctness: does it find out the correct level and shortest path of each node
+in the graph?
+
+s is at the correct level and the shortest path is just itself. Also it is the
+only node at level 0.
+
+assuming a node u is at a correct level L and its shortest path is correct and
+all nodes at levels L and below are correct and have correct shortest paths, then
+for each v in Adj[u],
+case 1: v is not in L + 1
+then it must be in parent, meaning it will not be added as L + 1
+case 2: v is in L + 1
+then it must not be in parent, meaning it will be added as L + 1; further, it
+will have the shortest path of L + 1.
+since we have ALL the L nodes, and all L + 1 nodes must be reachable directly
+from L's adjacency list lists, they will all be found.
+
+complexity: O(V + E) (assuming everything is reachable from s)
+
+
+DFS(s, Adj):
+    parent = {s: None}
+    DFS-visit(s, Adj, parent)
+
+DFS-visit(s, Adj, parent):
+    for u in Adj[s]:
+        if u not in parent:
+            parent[u] = s
+            DFS-visit(u, Adj)
+    visit(s, Adj)
+
+correctness: every node reachable from s is traversed, deepest nodes traversed first
+
+complexity: O(V + E) (assuming everything is reachable from s)
+
+

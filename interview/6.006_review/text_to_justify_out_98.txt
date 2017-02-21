@@ -1,0 +1,13 @@
+# Returns a predecessor subgraph (forest) which determines the shortest path # from a node
+in G to s. relax(u, v, edge_w, weight, parent): if v in weight and weight[v] <= edge_w +
+weight[u]: return weight[v] = weight[u] + edge_w parent[v] = u Q.update(v, weight[v]) <-
+O(ElgN) dijkstra(G_weight, Adj, s): parent = {s: None} weight {s: 0} // Q is the list of
+nodes in the frontier. Q.update(s, 0) Q = G.V, update everything to inf. while Q: <- O(V)
+u = Q.pop() <- O(VlgN) for v in Adj[u]: <- O(E) relax(u, v, G_weight(u, v), weight, parent)
+if Q is a list O(E) + O(V^2) subtract everything by the lowest negative number? no, that
+changes the weight-nature of the graph. The shortest path may not be the path with the
+least number of edges, then it gets extra penalty. relax(u, v, w, weight): if w[u] + weight
+< w[v]: w[v] = w[u] + weight return True return False B-F(G, Adj, s): parent = {s: None}
+w = dict() for u in G.v: w[u] = float('inf') w[s] = 0 for i in range(1, len(G.V)): for u
+in G.V: for v in Adj[u]: updated = relax(u, v, w, G.weight(u, v)) if updated: parent[v]
+= u for each edge(u, v) in G: if w[u] + weight(u, v) < w[v]: report negative cycle exists
