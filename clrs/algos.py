@@ -34,16 +34,14 @@ def bin_search2( lst, n, i=None, j=None ):
 
 def bin_search_iterative( lst, n ):
     i, j = 0, len( lst )
-
-    while j != i:
+    while i != j:
         mid = ( i + j ) / 2
-        mid_v = lst[ mid ]
-        if mid_v == n:
+        if lst[ mid ] == n:
             return mid
-        elif mid_v > n:
-            j = mid
-        else:
+        elif lst[ mid ] < n:
             i = mid + 1
+        else:
+            j = mid
     return None
 
 class TestAlgos( unittest.TestCase ):

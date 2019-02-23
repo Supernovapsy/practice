@@ -47,14 +47,6 @@ class Node( object ):
             node = node.parent
         return None # It's the maximum element
 
-class HelperNode( object ):
-    """Wrapper on Node to augment it with processing information"""
-    def __init__( self, node, recurse=True ):
-        self.node = node
-
-        # Whether to process the node by recursing on it.
-        self.recurse = recurse
-
 def transplant( t, u, v ):
     """transplant v onto u"""
     assert u
@@ -155,21 +147,18 @@ class BST( object ):
         """
         node = node or self.root
 
-        q = [ HelperNode( node ) ]
+        q = []
         inorder_list = [] # Return value
 
-        while q:
-            hnode = q.pop()
-            if not hnode.node:
-                continue
-
-            if hnode.recurse:
-                q.append( HelperNode( hnode.node.right ) )
-                hnode.recurse = False
-                q.append( hnode )
-                q.append( HelperNode( hnode.node.left ) )
+        while q or node:
+            if node:
+                q.append( node )
+                node = node.left
             else:
-                inorder_list.append( hnode.node.v )
+                node = q.pop()
+                # visit
+                inorder_list.append( node.v )
+                node = node.right
 
         return inorder_list
 
