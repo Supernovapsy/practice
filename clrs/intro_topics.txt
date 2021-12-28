@@ -1,0 +1,43 @@
+These topics might be relevant for interviews. They're separated into general and
+advanced categories depending on the focus of the interview.
+
+First pass of MIT's 6.006:
+- L1-3, 5, 8, 13, 14
+- optional: R2, L7, 9
+- recitations are optional.
+
+General (must know):
+- Knowing how to analyze the time and space complexity given code (big O notation).
+  - by extension, you know how to analyze your own algorithm's complexity.
+- Practice writing test cases.
+- divide and conquer
+  - recursion
+- linked lists
+- sorting
+  - insertion sort
+  - merge sort
+  - know about quick sort
+- BST (Binary search tree)
+- Hashing
+  - hash tables
+- BFS, DFS
+
+Good to know (closer to must know than advanced):
+- Bellman ford
+- Dijkstra
+
+
+Advanced (for interviews focused on algorithms):
+- Operating system knowledge.
+  - what is leaked memory?
+    - only relevant for non-garbage-collected langauges (non-GC languages)
+  - thrashing (not enough memory)
+- Dealing with large amounts of data (> 8GB), in which case storage to SSD to
+  hard drives may be required.
+- heap and heap sort
+- balanced binary search trees
+  - AVL tree, red-black tree
+- Counting Sort, Radix Sort
+- Providing the theoretic lower-bound on the time complexity required.
+- Table Doubling
+- Dynamic programming
